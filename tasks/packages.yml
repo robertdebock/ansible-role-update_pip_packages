@@ -1,0 +1,5 @@
+---
+
+- name: loop over update_pip_packages_clients
+  include: pip.yml
+  loop: "{{ update_pip_packages_clients }}"
