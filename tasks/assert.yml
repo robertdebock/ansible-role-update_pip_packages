@@ -1,12 +1,8 @@
 ---
 
-- name: test if update_pip_packages_X is set correctly
+- name: test if update_pip_packages_clients is set correctly
   assert:
     that:
-      - update_pip_packages_X is defined
-      - update_pip_packages_X is iterable
-      - update_pip_packages_X is number
-      - update_pip_packages_X is boolean
-      - update_pip_packages_X = 0
-      - update_pip_packages_X in [ "a", "b" ]
+      - update_pip_packages_clients is defined
+      - update_pip_packages_clients is iterable
     quiet: yes
