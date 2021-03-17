@@ -1,149 +1,113 @@
-[update_pip_packages](#update_pip_packages)
-=========
+# [update_pip_packages](#update_pip_packages)
 
-<img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
-<a href="https://travis-ci.org/robertdebock/ansible-role-update_pip_packages"> <img src="https://travis-ci.org/robertdebock/ansible-role-update_pip_packages.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/"/> <img src="https://img.shields.io/ansible/quality/"/>
+Find and update pip packages.
 
-<a href="https://github.com/robertdebock/ansible-role-update_pip_packages/actions"><img src="https://github.com/robertdebock/ansible-role-update_pip_packages/workflows/GitHub%20Action/badge.svg"/></a>
+|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-update_pip_packages/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-update_pip_packages/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-update_pip_packages/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-update_pip_packages)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/update_pip_packages)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/update_pip_packages)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-update_pip_packages.svg)](https://github.com/robertdebock/ansible-role-update_pip_packages/releases/)|
 
-Install and configure update_pip_packages on your system.
+## [Example Playbook](#example-playbook)
 
-Example Playbook
-----------------
-
-This example is taken from `molecule/resources/playbook.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
-- name: Converge
+- name: converge
   hosts: all
   become: yes
   gather_facts: yes
 
   roles:
-    - role: robertdebock.update_pip_packages```
+    - role: robertdebock.update_pip_packages
+```
 
-The machine you are running this on, may need to be prepared, I use this playbook to ensure everything is in place to let the role work.
+The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
 ```yaml
 ---
-- name: Converge
+- name: prepare
   hosts: all
   become: yes
   gather_facts: no
 
   roles:
     - role: robertdebock.bootstrap
-```
-
-After running this role, this playbook runs to verify that everything works, this may be a good example how you can use this role.
-```yaml
----
-- name: Verify
-  hosts: all
-  become: yes
-  gather_facts: yes
-
-  tasks:
-    - name: check if connection still works
-      ping:
+    - role: robertdebock.epel
+    - role: robertdebock.buildtools
+    - role: robertdebock.python_pip
+      python_pip_modules:
+        - name: ansible
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
-Role Variables
---------------
+## [Role Variables](#role-variables)
 
 These variables are set in `defaults/main.yml`:
 ```yaml
 ---
-# defaults file for update_pip_packages```
+# defaults file for update_pip_packages
 
-Requirements
-------------
-
-- Access to a repository containing packages, likely on the internet.
-- A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
-
-The following roles can be installed to ensure all requirements are met, using `ansible-galaxy install -r requirements.yml`:
-
-```yaml
----
-- robertdebock.bootstrap
-
+# A list of pip executables that will be use to get the packages.
+# Either full path, or just name name of the executable.
+# # If not specified, `pip` is used.
+update_pip_packages_clients:
+  - pip
+  - pip3
 ```
 
-Context
--------
+## [Requirements](#requirements)
+
+- pip packages listed in [requirements.txt](https://github.com/robertdebock/ansible-role-update_pip_packages/blob/master/requirements.txt).
+
+## [Status of requirements](#status-of-requirements)
+
+The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
+
+| Requirement | GitHub | GitLab |
+|-------------|--------|--------|
+| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
+
+## [Context](#context)
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/update_pip_packages.png "Dependency")
+![dependencies](https://raw.githubusercontent.com/robertdebock/ansible-role-update_pip_packages/png/requirements.png "Dependencies")
 
+## [Compatibility](#compatibility)
 
-Compatibility
--------------
-
-This role has been tested on these [container images](https://hub.docker.com/):
+This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
 
 |container|tags|
 |---------|----|
 |alpine|all|
+|amazon|all|
 |debian|all|
 |el|7, 8|
 |fedora|all|
 |opensuse|all|
-|ubuntu|bionic|
+|ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.7 but tests have been done to:
+The minimum version of Ansible required is 2.9, tests have been done to:
 
-- The previous version, on version lower.
+- The previous version.
 - The current version.
 - The development version.
 
 
 
-Testing
--------
-
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-update_pip_packages) are done on every commit, pull request, release and periodically.
-
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-update_pip_packages/issues)
 
-Testing is done using [Tox](https://tox.readthedocs.io/en/latest/) and [Molecule](https://github.com/ansible/molecule):
-
-[Tox](https://tox.readthedocs.io/en/latest/) tests multiple ansible versions.
-[Molecule](https://github.com/ansible/molecule) tests multiple distributions.
-
-To test using the defaults (any installed ansible version, namespace: `robertdebock`, image: `fedora`, tag: `latest`):
-
-```
-molecule test
-
-# Or select a specific image:
-image=ubuntu molecule test
-# Or select a specific image and a specific tag:
-image="debian" tag="stable" tox
-```
-
-Or you can test multiple versions of Ansible, and select images:
-Tox allows multiple versions of Ansible to be tested. To run the default (namespace: `robertdebock`, image: `fedora`, tag: `latest`) tests:
-
-```
-tox
-
-# To run CentOS (namespace: `robertdebock`, tag: `latest`)
-image="centos" tox
-# Or customize more:
-image="debian" tag="stable" tox
-```
-
-License
--------
+## [License](#license)
 
 Apache-2.0
 
+## [Contributors](#contributors)
 
-Author Information
-------------------
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+
+## [Author Information](#author-information)
 
 [Robert de Bock](https://robertdebock.nl/)
+
+Please consider [sponsoring me](https://github.com/sponsors/robertdebock).

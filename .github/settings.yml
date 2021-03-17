@@ -1,4 +1,8 @@
 ---
+#
+# Ansible managed
+#
 repository:
-  description: Install and configure update_pip_packages on your system.
+  description: Find and update pip packages.
   homepage: https://robertdebock.nl/
+  topics: updatepippackages, pip, update, ansible, molecule, tox, playbook, hacktoberfest

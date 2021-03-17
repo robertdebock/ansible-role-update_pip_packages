@@ -1,8 +1,9 @@
 ---
 galaxy_info:
   author: Robert de Bock
+  namespace: robertdebock
   role_name: update_pip_packages
-  description: Install and configure update_pip_packages on your system.
+  description: Find and update pip packages.
   license: Apache-2.0
   company: none
   min_ansible_version: 2.9
@@ -34,5 +35,7 @@ galaxy_info:
 
   galaxy_tags:
     - updatepippackages
+    - pip
+    - update
 
 dependencies: []
