@@ -1,1 +1,4 @@
 ---
+- name: show shit
+  ansible.builtin.debug:
+    msg: "{{ package }}"

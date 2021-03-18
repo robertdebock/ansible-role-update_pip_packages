@@ -12,8 +12,12 @@
   loop: "{{ update_pip_packages_clients }}"
   register: update_pip_packages_installed
 
+- name: show shit
+  ansible.builtin.debug:
+    msg: "{{ update_pip_packages_installed }}"
+
 - name: include pip.yml
   ansible.builtin.include: packages.yml
-  loop: "{{ update_pip_packages_clients.packages }}"
+  loop: "{{ update_pip_packages_clients }}"
   loop_control:
-    loop_var: pip_packages
+    loop_var: client
