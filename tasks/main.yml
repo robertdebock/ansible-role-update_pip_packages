@@ -6,18 +6,6 @@
   run_once: yes
   delegate_to: localhost
 
-- name: get all installed packages
-  community.general.pip_package_info:
-    clients: "{{ item }}"
+- name: include client.yml
+  ansible.builtin.include: client.yml
   loop: "{{ update_pip_packages_clients }}"
-  register: update_pip_packages_installed
-
-- name: show shit
-  ansible.builtin.debug:
-    msg: "{{ update_pip_packages_installed }}"
-
-- name: include pip.yml
-  ansible.builtin.include: packages.yml
-  loop: "{{ update_pip_packages_clients }}"
-  loop_control:
-    loop_var: client

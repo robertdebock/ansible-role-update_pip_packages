@@ -1,0 +1,21 @@
+---
+
+- name: get all installed packages
+  community.general.pip_package_info:
+    clients: "{{ item }}"
+  register: update_pip_packages
+
+# - name: show update_pip_packages
+#   ansible.builtin.debug:
+#     msg: "{{ update_pip_packages }}"
+
+- name: show single package
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+    quiet: yes
+  with_dict: "{{ update_pip_packages.packages[item]['key'] }}"
+# - name: update pip package
+#   pip:
+#     name: "{{ item.name }}"
+#     state: latest
+#   loop: "{{ update_pip_packages }}"
