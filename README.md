@@ -52,6 +52,10 @@ These variables are set in `defaults/main.yml`:
 update_pip_packages_clients:
   - pip
   - pip3
+
+# You can indicate to ignore a list of packages. Packages listed here will not be updated.
+update_pip_package_ignore:
+  - libcomps
 ```
 
 ## [Requirements](#requirements)
