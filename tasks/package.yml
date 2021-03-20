@@ -3,6 +3,6 @@
 - name: update package
   ansible.builtin.pip:
     name: "{{ package.key }}"
-    state: latest 
+    state: latest
   when:
     - package.key not in update_pip_package_ignore
