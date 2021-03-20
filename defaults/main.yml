@@ -11,3 +11,4 @@ update_pip_packages_clients: []
 update_pip_package_ignore:
   - libcomps
   - PyGObject
+  - pygobject
