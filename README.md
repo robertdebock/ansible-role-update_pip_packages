@@ -55,6 +55,8 @@ update_pip_packages_clients: []
 # You can indicate to ignore a list of packages. Packages listed here will not be updated.
 update_pip_package_ignore:
   - libcomps
+  - PyGObject
+  - pygobject
 ```
 
 ## [Requirements](#requirements)
@@ -85,10 +87,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|alpine|all|
-|amazon|all|
 |debian|all|
-|el|7, 8|
+|el|8|
 |fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic|
