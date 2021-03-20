@@ -48,10 +48,9 @@ These variables are set in `defaults/main.yml`:
 
 # A list of pip executables that will be use to get the packages.
 # Either full path, or just name name of the executable.
-# # If not specified, `pip` is used.
-update_pip_packages_clients:
-  - pip
-  - pip3
+# This role "discovers" pip and pip3 installations, but if you have a specific
+# pip executalbe, you can add items to this list.
+update_pip_packages_clients: []
 
 # You can indicate to ignore a list of packages. Packages listed here will not be updated.
 update_pip_package_ignore:

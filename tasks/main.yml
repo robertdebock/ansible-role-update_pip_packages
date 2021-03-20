@@ -6,6 +6,30 @@
   run_once: yes
   delegate_to: localhost
 
+- name: check if pip is used
+  command: which pip
+  changed_when: no
+  failed_when: no
+  register: update_pip_packages_pip
+
+- name: check if pip3 is used
+  command: which pip3
+  changed_when: no
+  failed_when: no
+  register: update_pip_packages_pip3
+
+- name: save pip to list
+  ansible.builtin.set_fact:
+    update_pip_packages_clients: "{{ update_pip_packages_clients + [ 'pip' ] }}"
+  when:
+    - update_pip_packages_pip is not failed
+
+- name: save pip3 to list
+  ansible.builtin.set_fact:
+    update_pip_packages_clients: "{{ update_pip_packages_clients + [ 'pip3' ] }}"
+  when:
+    - update_pip_packages_pip3 is not failed
+
 - name: include client.yml
   ansible.builtin.include: client.yml
   loop: "{{ update_pip_packages_clients }}"
