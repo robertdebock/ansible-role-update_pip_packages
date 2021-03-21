@@ -7,28 +7,38 @@
   delegate_to: localhost
 
 - name: check if pip is used
-  command: which pip
-  changed_when: no
-  failed_when: no
-  register: update_pip_packages_pip
+  block:
+    - name: which pip
+      ansible.builtin.command: which pip
+      changed_when: no
+      register: update_pip_packages_pip
+  rescue:
+    - name: no pip
+      ansible.builtin.debug:
+        msg: "There is no pip."
 
 - name: check if pip3 is used
-  command: which pip3
-  changed_when: no
-  failed_when: no
-  register: update_pip_packages_pip3
+  block:
+    - name: which pip3
+      command: which pip3
+      changed_when: no
+      register: update_pip_packages_pip3
+  rescue:
+    - name: no pip3
+      ansible.builtin.debug:
+        msg: "There is no pip3."
 
-- name: save pip to list
+- name: add pip to list
   ansible.builtin.set_fact:
-    update_pip_packages_clients: "{{ update_pip_packages_clients + [ 'pip' ] }}"
+    update_pip_packages_clients: "{{ update_pip_packages_clients + [ update_pip_packages_pip.stdout ] }}"
   when:
-    - update_pip_packages_pip is not failed
+    - update_pip_packages_pip is succeeded
 
-- name: save pip3 to list
+- name: add pip3 to list
   ansible.builtin.set_fact:
-    update_pip_packages_clients: "{{ update_pip_packages_clients + [ 'pip3' ] }}"
+    update_pip_packages_clients: "{{ update_pip_packages_clients + [ update_pip_packages_pip3.stdout ] }}"
   when:
-    - update_pip_packages_pip3 is not failed
+    - update_pip_packages_pip3 is succeeded
 
 - name: include client.yml
   ansible.builtin.include: client.yml
