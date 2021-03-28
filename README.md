@@ -4,7 +4,7 @@ Find and update pip packages.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-update_pip_packages/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-update_pip_packages/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-update_pip_packages/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-update_pip_packages)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/update_pip_packages)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/update_pip_packages)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-update_pip_packages.svg)](https://github.com/robertdebock/ansible-role-update_pip_packages/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-update_pip_packages/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-update_pip_packages/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-update_pip_packages/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-update_pip_packages)|[![quality](https://img.shields.io/ansible/quality/53775)](https://galaxy.ansible.com/robertdebock/update_pip_packages)|[![downloads](https://img.shields.io/ansible/role/d/53775)](https://galaxy.ansible.com/robertdebock/update_pip_packages)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-update_pip_packages.svg)](https://github.com/robertdebock/ansible-role-update_pip_packages/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -57,6 +57,7 @@ update_pip_package_ignore:
   - libcomps
   - PyGObject
   - pygobject
+  - pyxdg
 ```
 
 ## [Requirements](#requirements)
@@ -69,10 +70,10 @@ The following roles are used to prepare a system. You may choose to prepare your
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
-| [robertdebock.epel](https://galaxy.ansible.com/robertdebock/epel) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-epel)
-| [robertdebock.python_pip](https://galaxy.ansible.com/robertdebock/python_pip) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-python_pip)
-| [robertdebock.buildtools](https://galaxy.ansible.com/robertdebock/buildtools) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-buildtools/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-buildtools/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-buildtools/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-buildtools)
+|[robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)|
+|[robertdebock.epel](https://galaxy.ansible.com/robertdebock/epel)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-epel/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-epel)|
+|[robertdebock.python_pip](https://galaxy.ansible.com/robertdebock/python_pip)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-python_pip/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-python_pip/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-python_pip/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-python_pip)|
+|[robertdebock.buildtools](https://galaxy.ansible.com/robertdebock/buildtools)|[![Build Status GitHub](https://github.com/robertdebock/ansible-role-buildtools/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-buildtools/actions)|[![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-buildtools/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-buildtools)|
 
 ## [Context](#context)
 
