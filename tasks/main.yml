@@ -9,7 +9,8 @@
 - name: check if pip is used
   block:
     - name: which pip
-      ansible.builtin.command: which pip
+      ansible.builtin.command:
+        cmd: which pip
       changed_when: no
       register: update_pip_packages_pip
   rescue:
