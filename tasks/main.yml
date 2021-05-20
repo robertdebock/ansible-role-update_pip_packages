@@ -13,9 +13,9 @@
 
 - name: check if pip is used
   block:
-    - name: which pip
+    - name: pip
       ansible.builtin.command:
-        cmd: which pip
+        cmd: pip --version
       changed_when: no
       register: update_pip_packages_pip
   rescue:
@@ -25,8 +25,8 @@
 
 - name: check if pip3 is used
   block:
-    - name: which pip3
-      command: which pip3
+    - name: pip3
+      command: pip3 --version
       changed_when: no
       register: update_pip_packages_pip3
   rescue:
