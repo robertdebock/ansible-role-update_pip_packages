@@ -10,3 +10,4 @@
   with_dict: "{{ update_pip_packages.packages[client] }}"
   loop_control:
     loop_var: package
+    label: "{{ package.key }}"

@@ -1,0 +1,8 @@
+---
+# vars file for update_pip_packages
+
+_update_pip_packages_which_package:
+  default: which
+  Debian: debianutils
+
+update_pip_packages_which_package: "{{ _update_pip_packages_which_package[ansible_os_family] | default(_update_pip_packages_which_package['default']) }}"
