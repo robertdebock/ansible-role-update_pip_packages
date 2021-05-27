@@ -4,6 +4,8 @@
   community.general.pip_package_info:
     clients: "{{ client }}"
   register: update_pip_packages
+  environment:
+    path: "/bin:/usr/local/bin"
 
 - name: include package.yml
   include: package.yml

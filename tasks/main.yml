@@ -13,6 +13,8 @@
         cmd: pip --version
       changed_when: no
       register: update_pip_packages_pip
+      environment:
+        path: "/bin:/usr/local/bin"
   rescue:
     - name: no pip
       ansible.builtin.debug:
@@ -21,9 +23,12 @@
 - name: check if pip3 is used
   block:
     - name: pip3
-      command: pip3 --version
+      ansible.builtin.command:
+        cmd: pip3 --version
       changed_when: no
       register: update_pip_packages_pip3
+      environment:
+        path: "/bin:/usr/local/bin"
   rescue:
     - name: no pip3
       ansible.builtin.debug:
