@@ -47,7 +47,8 @@
     - update_pip_packages_pip3 is succeeded
 
 - name: include client.yml
-  ansible.builtin.include: client.yml
+  ansible.builtin.include_tasks:
+    file: client.yml
   loop: "{{ update_pip_packages_clients }}"
   loop_control:
     loop_var: client
