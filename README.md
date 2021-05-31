@@ -58,6 +58,8 @@ update_pip_package_ignore:
   - PyGObject
   - pygobject
   - pyxdg
+  - ansible
+  - resolvelib
 ```
 
 ## [Requirements](#requirements)
