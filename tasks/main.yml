@@ -6,15 +6,20 @@
   run_once: yes
   delegate_to: localhost
 
+- name: install which
+  package:
+    name: which
+    state: present
+
 - name: check if pip is used
   block:
-    - name: pip
+    - name: check pip
       ansible.builtin.command:
-        cmd: pip --version
+        cmd: which pip
       changed_when: no
       register: update_pip_packages_pip
       environment:
-        path: "/bin:/usr/local/bin"
+        PATH: "/bin:/usr/bin:/usr/local/bin"
   rescue:
     - name: no pip
       ansible.builtin.debug:
@@ -22,13 +27,13 @@
 
 - name: check if pip3 is used
   block:
-    - name: pip3
+    - name: check pip3
       ansible.builtin.command:
-        cmd: pip3 --version
+        cmd: which pip3
       changed_when: no
       register: update_pip_packages_pip3
       environment:
-        path: "/bin:/usr/local/bin"
+        PATH: "/bin:/usr/bin:/usr/local/bin"
   rescue:
     - name: no pip3
       ansible.builtin.debug:
@@ -36,7 +41,7 @@
 
 - name: add pip to list
   ansible.builtin.set_fact:
-    update_pip_packages_clients: "{{ update_pip_packages_clients + [ update_pip_packages_pip.stdout ] }}"
+    update_pip_packages_clients: "{{ [ update_pip_packages_pip.stdout ] }}"
   when:
     - update_pip_packages_pip is succeeded
 

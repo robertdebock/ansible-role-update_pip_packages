@@ -1,6 +1,6 @@
 ---
 
-- name: get all installed packages
+- name: get all installed packages for {{ client }}
   community.general.pip_package_info:
     clients: "{{ client }}"
   register: update_pip_packages
