@@ -6,3 +6,10 @@
 
   roles:
     - role: ansible-role-update_pip_packages
+      update_pip_package_ignore:
+        - libcomps
+        - PyGObject
+        - pygobject
+        - pyxdg
+        - ansible
+        - resolvelib

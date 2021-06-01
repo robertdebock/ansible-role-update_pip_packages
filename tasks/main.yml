@@ -6,9 +6,9 @@
   run_once: yes
   delegate_to: localhost
 
-- name: install which
+- name: install requirements
   package:
-    name: which
+    name: "{{ update_pip_packages_requirements }}"
     state: present
 
 - name: check if pip is used
