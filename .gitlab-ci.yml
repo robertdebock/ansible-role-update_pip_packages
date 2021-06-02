@@ -17,8 +17,6 @@ molecule:
   parallel:
     matrix:
       - image: "debian"
-        tag: "latest"
-      - image: "debian"
         tag: "bullseye"
       - image: "centos"
         tag: "latest"
@@ -29,8 +27,6 @@ molecule:
       - image: "fedora"
         tag: "rawhide"
       - image: "opensuse"
-        tag: "latest"
-      - image: "ubuntu"
         tag: "latest"
       - image: "ubuntu"
         tag: "bionic"
