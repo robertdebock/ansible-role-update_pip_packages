@@ -13,3 +13,4 @@
         - pyxdg
         - ansible
         - resolvelib
+        - dbus-python
