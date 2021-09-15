@@ -34,7 +34,9 @@ jobs:
       matrix:
         config:
           - image: "debian"
-            tag: "bullseye"
+            tag: "latest"
+          - image: "debian"
+            tag: "bookworm"
           - image: "rockylinux"
             tag: "latest"
           - image: "fedora"
