@@ -21,6 +21,7 @@
       environment:
         PATH: "/bin:/usr/bin:/usr/local/bin"
   rescue:
+
     - name: no pip
       ansible.builtin.debug:
         msg: "There is no pip."
@@ -35,6 +36,7 @@
       environment:
         PATH: "/bin:/usr/bin:/usr/local/bin"
   rescue:
+
     - name: no pip3
       ansible.builtin.debug:
         msg: "There is no pip3."
