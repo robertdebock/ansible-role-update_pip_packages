@@ -11,6 +11,5 @@
         - PyGObject
         - pygobject
         - pyxdg
-        - ansible
         - resolvelib
         - dbus-python
