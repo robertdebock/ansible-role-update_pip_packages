@@ -13,3 +13,4 @@
         - pyxdg
         - resolvelib
         - dbus-python
+        - setuptools
