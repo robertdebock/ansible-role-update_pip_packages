@@ -1,4 +1,4 @@
-# Ansible role [update_pip_packages](#update_pip_packages)
+# [Ansible role update_pip_packages](#update_pip_packages)
 
 Find and update pip packages.
 
