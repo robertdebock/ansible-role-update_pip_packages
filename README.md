@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: robertdebock.update_pip_packages
+    - role: ansible-role-update_pip_packages
       update_pip_package_ignore:
         - libcomps
         - PyGObject
