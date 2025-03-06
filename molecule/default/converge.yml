@@ -5,7 +5,7 @@
   gather_facts: true
 
   roles:
-    - role: ansible-role-update_pip_packages
+    - role: robertdebock.update_pip_packages
       update_pip_package_ignore:
         - libcomps
         - PyGObject
