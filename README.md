@@ -43,8 +43,19 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.epel
     - role: robertdebock.buildtools
     - role: robertdebock.python_pip
-      python_pip_modules:
-        - name: ansible
+
+  tasks:
+    - name: Install pip package (try without flags)
+      block:
+        - name: Install pip package
+          ansible.builtin.pip:
+            name: ansible
+      rescue:
+        - name: Retry install with --break-system-packages when supported
+          ansible.builtin.pip:
+            name: ansible
+            break_system_packages: true
+            extra_args: --break-system-packages
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
