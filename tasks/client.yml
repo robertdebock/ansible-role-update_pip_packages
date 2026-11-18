@@ -1,26 +1,41 @@
 ---
 
+# Problems that exist before the update are not caused by this role, only fail on new ones.
 - name: client | Check for broken requirements before changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
   changed_when: false
+  failed_when: false
+  register: update_pip_packages_check_before
 
+# Packages installed by the distribution (installer "debian", "rpm", ...) cannot be uninstalled by pip, only update
+# the packages pip installed itself.
 - name: client | Get all installed packages for {{ client }}
-  community.general.pip_package_info:
-    clients: "{{ client }}"
+  ansible.builtin.command:
+    cmd: "{{ client }} list --verbose --format json"
+  changed_when: false
   register: update_pip_packages
   environment:
-    path: "/bin:/usr/local/bin"
+    PATH: "/bin:/usr/bin:/usr/local/bin"
 
-- name: client | Include package.yml
-  ansible.builtin.include_tasks:
-    file: package.yml
-  with_dict: "{{ update_pip_packages.packages[client] }}"
-  loop_control:
-    loop_var: package
-    label: "{{ package.key }}"
+# All packages are updated in one call, so that pip's resolver keeps the requirements of the packages consistent.
+- name: client | Update packages
+  ansible.builtin.pip:
+    name: "{{ _update_pip_packages_names }}"
+    executable: "{{ client }}"
+    state: latest  # noqa package-latest
+    break_system_packages: true
+  environment:
+    PATH: "/bin:/usr/bin:/usr/local/bin"
+  vars:
+    _update_pip_packages_names: "{{ update_pip_packages.stdout | from_json | selectattr('installer', 'defined') | selectattr('installer', 'equalto', 'pip') | map(attribute='name') | difference(update_pip_package_ignore | default([])) | list }}"
+  when:
+    - _update_pip_packages_names | length > 0
 
 - name: client | Check for broken requirements after changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
   changed_when: false
+  failed_when:
+    - update_pip_packages_check_after.stdout_lines | difference(update_pip_packages_check_before.stdout_lines) | length > 0
+  register: update_pip_packages_check_after
