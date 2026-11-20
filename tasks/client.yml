@@ -4,8 +4,10 @@
 - name: client | Check for broken requirements before changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
-  changed_when: false
-  failed_when: false
+  changed_when:
+    - false
+  failed_when:
+    - false
   register: update_pip_packages_check_before
 
 # Packages installed by the distribution (installer "debian", "rpm", ...) cannot be uninstalled by pip, only update
@@ -13,7 +15,8 @@
 - name: client | Get all installed packages for {{ client }}
   ansible.builtin.command:
     cmd: "{{ client }} list --verbose --format json"
-  changed_when: false
+  changed_when:
+    - false
   register: update_pip_packages
   environment:
     PATH: "/bin:/usr/bin:/usr/local/bin"
@@ -35,7 +38,8 @@
 - name: client | Check for broken requirements after changes
   ansible.builtin.command:
     cmd: "{{ client }} check"
-  changed_when: false
+  changed_when:
+    - false
   failed_when:
     - update_pip_packages_check_after.stdout_lines | difference(update_pip_packages_check_before.stdout_lines) | length > 0
   register: update_pip_packages_check_after
